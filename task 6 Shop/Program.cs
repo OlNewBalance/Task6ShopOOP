@@ -7,7 +7,7 @@ namespace Task6_Shop
             string input;
             int playerMoney = 10000;
             PlayerInventory inventory = new PlayerInventory();
-            var sh = new ShopMaster(inventory);
+            var sh = new ShopCart(inventory);
             var iin = new PlayerInventory();
             sh.AddProduct("Чай", 134, 14, 134);
             sh.AddProduct("Молоко", 98, 12, 542);
@@ -26,7 +26,7 @@ namespace Task6_Shop
                 {
                     while (Console.ReadKey(true).Key != ConsoleKey.E)
                     {
-                        sh.PrintCounter();
+                        sh.PrintInventory();
                         Console.WriteLine($"Ваш баланс: {playerMoney} динариев");
                         Console.Write("\nХотите что-то купить(S), или посмотреть инвентарь(I), или на выход(E)? ");
                         if (Console.ReadKey(true).Key == ConsoleKey.S)
@@ -35,7 +35,7 @@ namespace Task6_Shop
                             string productName = Console.ReadLine();
 
                             // Поиск товара по названию (без учета регистра)
-                            var product = sh.Counter.FirstOrDefault(p =>
+                            var product = sh.ShoppingCart.FirstOrDefault(p =>
                                 p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
                             if (product != null)
@@ -96,8 +96,9 @@ namespace Task6_Shop
 
                             Console.WriteLine("E - выход, I - посмотреть инвентарь, Любая клавиша - продолжить");
                         }
-                        if (Console.ReadKey(true).Key == ConsoleKey.I)
+                        else if (Console.ReadKey(true).Key == ConsoleKey.I)
                         {
+                            Console.WriteLine("ZooPorno");
                             inventory.PrintCounter();
                             Console.WriteLine("E - выход, Любая клавиша - продолжить");
                         }
